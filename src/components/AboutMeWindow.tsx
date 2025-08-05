@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { Minimize2, Maximize2, X } from "lucide-react";
 import { WindowType } from "./WindowManager";
+import profileAvatar from "../assets/profileavatorpicture.jpg";
 
 interface AboutMeWindowProps {
   onWindowChange: (windowType: WindowType) => void;
@@ -19,7 +20,7 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
       }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
       className="fixed inset-0 flex items-center justify-center z-40 pb-20"
-      style={{ paddingTop: '30px' }}
+      style={{ paddingTop: '90px' }}
     >
       <div className="w-[600px] bg-window/95 backdrop-blur-macos rounded-lg shadow-window border border-window-border/50 overflow-hidden">
         {/* Window Header */}
@@ -91,11 +92,13 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
           >
             <div className="text-center mb-6">
               <motion.div 
-                className="w-24 h-24 rounded-full bg-gradient-to-br from-primary via-accent to-primary mx-auto mb-4 flex items-center justify-center text-4xl"
-                animate={{ rotate: [0, 5, -5, 0] }}
-                transition={{ duration: 4, repeat: Infinity }}
+                className="w-40 h-40 rounded-full mx-auto mb-4 flex items-center justify-center overflow-hidden"
               >
-                👨‍💻
+                <img 
+                  src={profileAvatar} 
+                  alt="Profile Avatar" 
+                  className="w-96 h-96 rounded-full object-contain"
+                />
               </motion.div>
               <h1 className="text-xl font-bold text-foreground mb-2">
                 Hello, I'm <span className="text-primary">Justin</span>
