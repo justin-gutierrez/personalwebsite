@@ -2,6 +2,7 @@ import { AnimatePresence } from "framer-motion";
 import AboutMeWindow from "./AboutMeWindow";
 import ProjectsWindow from "./ProjectsWindow";
 import ResumeWindow from "./ResumeWindow";
+import ContactWindow from "./ContactWindow";
 
 export type WindowType = "about" | "projects" | "resume" | "contact";
 
@@ -19,6 +20,8 @@ const WindowManager = ({ activeWindow, onWindowChange }: WindowManagerProps) => 
         return <ProjectsWindow key="projects" onWindowChange={onWindowChange} />;
       case "resume":
         return <ResumeWindow key="resume" onWindowChange={onWindowChange} />;
+      case "contact":
+        return <ContactWindow key="contact" onWindowChange={onWindowChange} />;
       default:
         return null;
     }

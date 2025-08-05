@@ -116,7 +116,7 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
               <p>
                 When I'm not coding, you'll find me exploring new technologies, experimenting with the latest in AI. 
                 I also enjoy playing pickleball, watching the latest movies, and eating some very good sushi or mexican food.
-                Below you'll find some of my current focuses, as well as some languages and frameworks I've utilized.
+                Below you'll find some of my current focuses, as well as some languages and frameworks I've utilized displayed in the docker at the bottom.
               </p>
               
               <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
