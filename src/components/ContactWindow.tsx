@@ -21,7 +21,7 @@ const ContactWindow = ({ onWindowChange }: ContactWindowProps) => {
     {
       name: "LinkedIn",
       icon: Linkedin,
-      url: "https://linkedin.com/in/justin-gutierrez",
+      url: "https://www.linkedin.com/in/justingutierrez1/",
       color: "from-blue-600 to-blue-800",
       hoverColor: "hover:from-blue-500 hover:to-blue-700"
     },
