@@ -11,23 +11,35 @@ const ProjectsWindow = ({ onWindowChange }: ProjectsWindowProps) => {
     {
       name: "LLMContext",
       icon: "💻",
-      description: "IDE plugin for optimized documentation context",
-      tech: "TypeScript • React • CLI",
-      date: "2 days ago"
+      description: "CLI tool/sidecar for optimized documentation context",
+      tech: "Python • FastAPI • ChromaDB",
+      date: "Aug 2025",
+      hasGitHub: true,
+      githubUrl: "https://github.com/justin-gutierrez/llmcontext",
+      hasDevPost: false,
+      devPostUrl: ""
     },
     {
       name: "TerraScopeAI",
       icon: "🌍",
-      description: "AI-powered environmental monitoring system",
-      tech: "Python • TensorFlow • AWS",
-      date: "1 week ago"
+      description: "AI-powered terrain analysis website (Berkeley AI Hackathon 2025)",
+      tech: "React • Tailwind • Supabase • Docker • FastAPI",
+      date: "Jun 2025",
+      hasGitHub: false,
+      githubUrl: "",
+      hasDevPost: true,
+      devPostUrl: "https://devpost.com/software/jawn-ai"
     },
     {
-      name: "FullStackWebApp",
+      name: "Photography Portfolio Website",
       icon: "💻",
-      description: "Complete web application with frontend and backend",
-      tech: "React • Node.js • MongoDB",
-      date: "3 weeks ago"
+      description: "Complete web application with booking system, admin dashboard, and collection upload",
+      tech: "React • TypeScript • Tailwind • Firebase • Vercel • WebP",
+      date: "Jul 2025",
+      hasGitHub: true,
+      githubUrl: "https://github.com/justin-gutierrez/Freelance-client-website",
+      hasDevPost: false,
+      devPostUrl: ""
     }
   ];
 
@@ -183,9 +195,81 @@ const ProjectsWindow = ({ onWindowChange }: ProjectsWindowProps) => {
                       <span className="text-xs text-foreground/60">
                         {project.tech}
                       </span>
-                      <span className="text-xs text-foreground/50">
-                        {project.date}
-                      </span>
+                      <div className="flex items-center space-x-3">
+                        {project.hasGitHub && (
+                          <motion.a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs font-medium relative overflow-hidden px-2 py-1 rounded bg-gradient-to-r from-cyan-400/20 to-blue-400/20 border border-cyan-400/30 hover:border-cyan-400/50 transition-colors"
+                            animate={{
+                              background: [
+                                "linear-gradient(90deg, rgba(34, 211, 238, 0.2) 0%, rgba(59, 130, 246, 0.2) 50%, rgba(34, 211, 238, 0.2) 100%)",
+                                "linear-gradient(90deg, rgba(59, 130, 246, 0.2) 0%, rgba(34, 211, 238, 0.2) 50%, rgba(59, 130, 246, 0.2) 100%)",
+                                "linear-gradient(90deg, rgba(34, 211, 238, 0.2) 0%, rgba(59, 130, 246, 0.2) 50%, rgba(34, 211, 238, 0.2) 100%)"
+                              ]
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: "linear"
+                            }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <span className="relative z-10 text-cyan-300">GitHub</span>
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-cyan-400/30 to-transparent"
+                              animate={{
+                                x: ["-100%", "100%"]
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "linear"
+                              }}
+                            />
+                          </motion.a>
+                        )}
+                        {project.hasDevPost && (
+                          <motion.a
+                            href={project.devPostUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-xs font-medium relative overflow-hidden px-2 py-1 rounded bg-gradient-to-r from-purple-400/20 to-orange-400/20 border border-purple-400/30 hover:border-purple-400/50 transition-colors"
+                            animate={{
+                              background: [
+                                "linear-gradient(90deg, rgba(168, 85, 247, 0.2) 0%, rgba(251, 146, 60, 0.2) 50%, rgba(168, 85, 247, 0.2) 100%)",
+                                "linear-gradient(90deg, rgba(251, 146, 60, 0.2) 0%, rgba(168, 85, 247, 0.2) 50%, rgba(251, 146, 60, 0.2) 100%)",
+                                "linear-gradient(90deg, rgba(168, 85, 247, 0.2) 0%, rgba(251, 146, 60, 0.2) 50%, rgba(168, 85, 247, 0.2) 100%)"
+                              ]
+                            }}
+                            transition={{
+                              duration: 3,
+                              repeat: Infinity,
+                              ease: "linear"
+                            }}
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                          >
+                            <span className="relative z-10 text-purple-300">DevPost</span>
+                            <motion.div
+                              className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-400/30 to-transparent"
+                              animate={{
+                                x: ["-100%", "100%"]
+                              }}
+                              transition={{
+                                duration: 2,
+                                repeat: Infinity,
+                                ease: "linear"
+                              }}
+                            />
+                          </motion.a>
+                        )}
+                        <span className="text-xs text-foreground/50">
+                          {project.date}
+                        </span>
+                      </div>
                     </div>
                   </div>
                 </motion.div>

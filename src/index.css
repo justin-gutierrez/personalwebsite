@@ -127,3 +127,27 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* PDF Viewer Styles */
+@layer components {
+  .pdf-page {
+    @apply shadow-lg;
+  }
+  
+  .pdf-page canvas {
+    @apply rounded-lg;
+  }
+  
+  /* Hide default PDF.js controls */
+  .react-pdf__Page__canvas {
+    @apply rounded-lg;
+  }
+  
+  .react-pdf__Page__textContent {
+    @apply hidden;
+  }
+  
+  .react-pdf__Page__annotations {
+    @apply hidden;
+  }
+}
