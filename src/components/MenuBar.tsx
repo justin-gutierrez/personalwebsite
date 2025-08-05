@@ -2,8 +2,14 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Wifi, Battery, Volume2 } from "lucide-react";
 import pineappleLogo from "@/assets/pineapple-logo.png";
+import { WindowType } from "./WindowManager";
 
-const MenuBar = () => {
+interface MenuBarProps {
+  onWindowChange: (windowType: WindowType) => void;
+  activeWindow: WindowType;
+}
+
+const MenuBar = ({ onWindowChange, activeWindow }: MenuBarProps) => {
   const [currentTime, setCurrentTime] = useState(new Date());
 
   useEffect(() => {
@@ -32,10 +38,10 @@ const MenuBar = () => {
   };
 
   const menuItems = [
-    { label: "About", active: true },
-    { label: "Projects", active: false },
-    { label: "Resume", active: false },
-    { label: "Contact", active: false },
+    { label: "About", type: "about" as WindowType },
+    { label: "Projects", type: "projects" as WindowType },
+    { label: "Resume", type: "resume" as WindowType },
+    { label: "Contact", type: "contact" as WindowType },
   ];
 
   return (
@@ -62,12 +68,13 @@ const MenuBar = () => {
               <motion.button
                 key={item.label}
                 className={`text-sm font-medium transition-colors text-white ${
-                  item.active 
+                  activeWindow === item.type 
                     ? 'text-white' 
                     : 'text-white/80 hover:text-white'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                onClick={() => onWindowChange(item.type)}
               >
                 {item.label}
               </motion.button>

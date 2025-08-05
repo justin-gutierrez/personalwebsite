@@ -1,11 +1,22 @@
 import { motion } from "framer-motion";
 import { Minimize2, Maximize2, X } from "lucide-react";
+import { WindowType } from "./WindowManager";
 
-const AboutMeWindow = () => {
+interface AboutMeWindowProps {
+  onWindowChange: (windowType: WindowType) => void;
+}
+
+const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
   return (
     <motion.div
       initial={{ scale: 0.8, opacity: 0, y: 50 }}
       animate={{ scale: 1, opacity: 1, y: 0 }}
+      exit={{ 
+        scale: 0, 
+        y: 200, 
+        opacity: 0,
+        transition: { duration: 0.4, ease: "easeInOut" }
+      }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
       className="fixed inset-0 flex items-center justify-center z-40"
     >
