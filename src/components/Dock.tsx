@@ -1,22 +1,121 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 
+// Import all the logo images
+import javaLogo from "../assets/newjavalogo.webp";
+import pythonLogo from "../assets/python-logo-only.png";
+import javascriptLogo from "../assets/javascript-logo-javascript-icon-transparent-free-png.webp";
+import typescriptLogo from "../assets/typescriptlogo.png";
+import reactLogo from "../assets/reactlogo.png";
+import tailwindLogo from "../assets/tailwindlogo.png";
+import fastapiLogo from "../assets/fastapitransparentlogo.svg";
+import ollamaLogo from "../assets/ollamanewlogo.png";
+import supabaseLogo from "../assets/newsupabaselogo.png";
+import firebaseLogo from "../assets/firebasenewlogo.png";
+import chromadbLogo from "../assets/chromadblogo.webp";
+import dockerLogo from "../assets/dockerpng.png";
+
 const Dock = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   const dockItems = [
-    { name: "Java", icon: "☕", color: "from-orange-400 to-red-500" },
-    { name: "Python", icon: "🐍", color: "from-blue-400 to-yellow-400" },
-    { name: "JavaScript", icon: "🟡", color: "from-yellow-400 to-orange-400" },
-    { name: "TypeScript", icon: "📘", color: "from-blue-500 to-indigo-600" },
-    { name: "React", icon: "⚛️", color: "from-cyan-400 to-blue-500" },
-    { name: "Tailwind", icon: "🎨", color: "from-teal-400 to-cyan-500" },
-    { name: "FastAPI", icon: "⚡", color: "from-green-400 to-emerald-500" },
-    { name: "Ollama", icon: "🤖", color: "from-purple-400 to-indigo-500" },
-    { name: "Supabase", icon: "🟢", color: "from-green-500 to-emerald-600" },
-    { name: "Firebase", icon: "🔥", color: "from-orange-400 to-red-500" },
-    { name: "ChromaDB", icon: "🌈", color: "from-pink-400 to-purple-500" },
-    { name: "Docker", icon: "🐳", color: "from-blue-400 to-blue-600" },
+    { 
+      name: "Java", 
+      icon: javaLogo, 
+      color: "from-orange-400 to-red-500",
+      bgColor: "bg-white/10",
+      useFilter: false,
+      logoSize: "w-8 h-8"
+    },
+    { 
+      name: "Python", 
+      icon: pythonLogo, 
+      color: "from-blue-400 to-yellow-400",
+      bgColor: "bg-white/10",
+      useFilter: false,
+      logoSize: "w-8 h-8"
+    },
+    { 
+      name: "JavaScript", 
+      icon: javascriptLogo, 
+      color: "from-yellow-400 to-orange-400",
+      bgColor: "bg-white/10",
+      useFilter: false,
+      logoSize: "w-8 h-8"
+    },
+    { 
+      name: "TypeScript", 
+      icon: typescriptLogo, 
+      color: "from-blue-500 to-indigo-600",
+      bgColor: "bg-white/10",
+      useFilter: false,
+      logoSize: "w-8 h-8"
+    },
+    { 
+      name: "React", 
+      icon: reactLogo, 
+      color: "from-cyan-400 to-blue-500",
+      bgColor: "bg-white/10",
+      useFilter: false,
+      logoSize: "w-8 h-8"
+    },
+    { 
+      name: "Tailwind", 
+      icon: tailwindLogo, 
+      color: "from-teal-400 to-cyan-500",
+      bgColor: "bg-white/10",
+      useFilter: false,
+      logoSize: "w-8 h-8"
+    },
+    { 
+      name: "FastAPI", 
+      icon: fastapiLogo, 
+      color: "from-green-400 to-emerald-500",
+      bgColor: "bg-white/10",
+      useFilter: false,
+      logoSize: "w-8 h-8"
+    },
+    { 
+      name: "Ollama", 
+      icon: ollamaLogo, 
+      color: "from-purple-400 to-indigo-500",
+      bgColor: "bg-white/10",
+      useFilter: false,
+      logoSize: "w-8 h-8"
+    },
+    { 
+      name: "Supabase", 
+      icon: supabaseLogo, 
+      color: "from-green-500 to-emerald-600",
+      bgColor: "bg-white/10",
+      useFilter: false,
+      logoSize: "w-8 h-8"
+    },
+    { 
+      name: "Firebase", 
+      icon: firebaseLogo, 
+      color: "from-orange-400 to-red-500",
+      bgColor: "bg-white/10",
+      useFilter: false,
+      logoSize: "w-8 h-8"
+    },
+    { 
+      name: "ChromaDB", 
+      icon: chromadbLogo, 
+      color: "from-pink-400 to-purple-500",
+      bgColor: "bg-pink-500/20",
+      useFilter: false,
+      preserveColors: true,
+      logoSize: "w-8 h-8"
+    },
+    { 
+      name: "Docker", 
+      icon: dockerLogo, 
+      color: "from-blue-400 to-blue-600",
+      bgColor: "bg-white/10",
+      useFilter: false,
+      logoSize: "w-8 h-8"
+    },
   ];
 
   return (
@@ -25,7 +124,7 @@ const Dock = () => {
       animate={{ y: 0 }}
       className="fixed bottom-4 left-0 right-0 z-50 flex justify-center"
     >
-      <div className="bg-gray-600/60 backdrop-blur-macos rounded-2xl border border-gray-500/30 shadow-dock p-3 w-[95vw] max-w-5xl">
+      <div className="bg-gray-300/60 backdrop-blur-macos rounded-2xl border border-gray-500/30 shadow-dock p-2 w-[95vw] max-w-5xl">
         <div className="flex items-end justify-center space-x-3">
           {dockItems.map((item, index) => {
             const isHovered = hoveredIndex === index;
@@ -43,13 +142,23 @@ const Dock = () => {
               >
                 <div className={`
                   w-14 h-14 rounded-xl bg-gradient-to-br ${item.color} 
-                  flex items-center justify-center text-2xl cursor-pointer
+                  flex items-center justify-center cursor-pointer
                   shadow-lg relative overflow-hidden
                   before:absolute before:inset-0 before:bg-gradient-glass before:opacity-30
                 `}>
-                  <span className="relative z-10 filter drop-shadow-sm">
-                    {item.icon}
-                  </span>
+                  <div className={`
+                    w-10 h-10 rounded-lg ${item.bgColor} backdrop-blur-sm
+                    flex items-center justify-center relative z-10
+                    border border-white/20
+                  `}>
+                    <img 
+                      src={item.icon} 
+                      alt={item.name}
+                      className={`${item.logoSize} object-contain drop-shadow-sm ${
+                        item.preserveColors ? '' : ''
+                      }`}
+                    />
+                  </div>
                 </div>
                 
                 {/* Tooltip */}

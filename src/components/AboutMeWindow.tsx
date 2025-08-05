@@ -18,7 +18,8 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
         transition: { duration: 0.4, ease: "easeInOut" }
       }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
-      className="fixed inset-0 flex items-center justify-center z-40"
+      className="fixed inset-0 flex items-center justify-center z-40 pb-20"
+      style={{ paddingTop: '30px' }}
     >
       <div className="w-[600px] bg-window/95 backdrop-blur-macos rounded-lg shadow-window border border-window-border/50 overflow-hidden">
         {/* Window Header */}
@@ -81,14 +82,14 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
         </div>
 
         {/* Content */}
-        <div className="p-6 min-h-[400px] bg-gradient-to-br from-window via-window/95 to-window/90">
+        <div className="p-6 pb-20 min-h-[400px] bg-gradient-to-br from-window via-window/95 to-window/90">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
             className="space-y-6"
           >
-            <div className="text-center mb-8">
+            <div className="text-center mb-6">
               <motion.div 
                 className="w-24 h-24 rounded-full bg-gradient-to-br from-primary via-accent to-primary mx-auto mb-4 flex items-center justify-center text-4xl"
                 animate={{ rotate: [0, 5, -5, 0] }}
@@ -96,13 +97,13 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
               >
                 👨‍💻
               </motion.div>
-              <h1 className="text-2xl font-bold text-foreground mb-2">
+              <h1 className="text-xl font-bold text-foreground mb-2">
                 Hello, I'm <span className="text-primary">Justin</span>
               </h1>
-              <p className="text-foreground/70">Software Engineer</p>
+              <p className="text-foreground/70 text-sm">Software Engineer</p>
             </div>
 
-            <div className="space-y-4 text-foreground/80 leading-relaxed">
+            <div className="space-y-4 text-foreground/80 leading-relaxed text-sm">
               <p>
                 I'm an undergraduate student at San Jose State University, pursuing a Bachelor's degree in Computer Science.
                 I am very interested in the field of AI and machine learning, ultimately mixing this passion with my desire to create.
@@ -121,7 +122,7 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
               
               <div className="mt-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
                 <h3 className="text-primary font-semibold mb-2">Current Focus</h3>
-                <p className="text-sm text-foreground/70">
+                <p className="text-xs text-foreground/70">
                   - Building IDE plugins that connects developers to a CLI tool to deliver optimized documentation context into their workflow. 
                   - Finishing a freelance website frontend and backend deployment on Vercel
                 </p>
