@@ -72,25 +72,56 @@ export default {
 					'accent-foreground': 'hsl(var(--sidebar-accent-foreground))',
 					border: 'hsl(var(--sidebar-border))',
 					ring: 'hsl(var(--sidebar-ring))'
+				},
+				// iOS-specific colors
+				ios: {
+					blue: '#007AFF',
+					green: '#34C759',
+					orange: '#FF9500',
+					red: '#FF3B30',
+					pink: '#FF2D92',
+					purple: '#AF52DE',
+					yellow: '#FFCC02',
+					gray: {
+						1: '#8E8E93',
+						2: '#AEAEB2',
+						3: '#C7C7CC',
+						4: '#D1D1D6',
+						5: '#E5E5EA',
+						6: '#F2F2F7'
+					}
 				}
 			},
 			borderRadius: {
 				lg: 'var(--radius)',
 				md: 'calc(var(--radius) - 2px)',
-				sm: 'calc(var(--radius) - 4px)'
+				sm: 'calc(var(--radius) - 4px)',
+				// iOS-specific border radius
+				'ios': '12px',
+				'ios-lg': '16px',
+				'ios-xl': '20px'
 			},
 			backgroundImage: {
 				'gradient-cosmic': 'var(--gradient-cosmic)',
 				'gradient-aurora': 'var(--gradient-aurora)',
-				'gradient-glass': 'var(--gradient-glass)'
+				'gradient-glass': 'var(--gradient-glass)',
+				// iOS-specific gradients
+				'ios-glass': 'linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%)',
+				'ios-card': 'linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.05) 100%)'
 			},
 			boxShadow: {
 				'glow': 'var(--shadow-glow)',
 				'window': 'var(--shadow-window)',
-				'dock': 'var(--shadow-dock)'
+				'dock': 'var(--shadow-dock)',
+				// iOS-specific shadows
+				'ios': '0 2px 8px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08)',
+				'ios-lg': '0 4px 16px rgba(0,0,0,0.15), 0 2px 6px rgba(0,0,0,0.1)',
+				'ios-xl': '0 8px 32px rgba(0,0,0,0.18), 0 4px 12px rgba(0,0,0,0.12)'
 			},
 			backdropBlur: {
-				'macos': '20px'
+				'macos': '20px',
+				'ios': '25px',
+				'ios-lg': '30px'
 			},
 			keyframes: {
 				'accordion-down': {
@@ -113,6 +144,19 @@ export default {
 					'0%': { transform: 'scale(1) translateY(0)' },
 					'50%': { transform: 'scale(1.1) translateY(-5px)' },
 					'100%': { transform: 'scale(1) translateY(0)' }
+				},
+				// iOS-specific animations
+				'ios-bounce': {
+					'0%, 100%': { transform: 'scale(1)' },
+					'50%': { transform: 'scale(0.95)' }
+				},
+				'ios-slide-up': {
+					'0%': { transform: 'translateY(100%)' },
+					'100%': { transform: 'translateY(0)' }
+				},
+				'ios-fade-in': {
+					'0%': { opacity: '0', transform: 'translateY(20px)' },
+					'100%': { opacity: '1', transform: 'translateY(0)' }
 				}
 			},
 			animation: {
@@ -120,9 +164,31 @@ export default {
 				'accordion-up': 'accordion-up 0.2s ease-out',
 				'float': 'float 3s ease-in-out infinite',
 				'glow': 'glow 2s ease-in-out infinite',
-				'dock-bounce': 'dock-bounce 0.3s ease-out'
+				'dock-bounce': 'dock-bounce 0.3s ease-out',
+				// iOS-specific animations
+				'ios-bounce': 'ios-bounce 0.2s ease-out',
+				'ios-slide-up': 'ios-slide-up 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+				'ios-fade-in': 'ios-fade-in 0.4s ease-out'
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [
+		require("tailwindcss-animate"),
+		// Custom plugin for scrollbar hiding
+		function({ addUtilities }: any) {
+			const newUtilities = {
+				'.scrollbar-hide': {
+					/* IE and Edge */
+					'-ms-overflow-style': 'none',
+					/* Firefox */
+					'scrollbar-width': 'none',
+					/* Safari and Chrome */
+					'&::-webkit-scrollbar': {
+						display: 'none'
+					}
+				}
+			}
+			addUtilities(newUtilities)
+		}
+	],
 } satisfies Config;

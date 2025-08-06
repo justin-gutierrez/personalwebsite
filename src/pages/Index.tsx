@@ -2,12 +2,15 @@ import ParticleBackground from "@/components/ParticleBackground";
 import MenuBar from "@/components/MenuBar";
 import Dock from "@/components/Dock";
 import WindowManager from "@/components/WindowManager";
+import MobileInterface from "@/components/MobileInterface";
 import cosmicBg from "@/assets/cosmic-bg.jpg";
 import { useState } from "react";
 import { WindowType } from "@/components/WindowManager";
+import { useMobile } from "@/hooks/useMobile";
 
 const Index = () => {
   const [activeWindow, setActiveWindow] = useState<WindowType>("about");
+  const { isMobile, isTablet, isDesktop } = useMobile();
 
   const handleWindowChange = (windowType: WindowType) => {
     setActiveWindow(windowType);
@@ -27,19 +30,22 @@ const Index = () => {
       {/* Particle Animation Layer */}
       <ParticleBackground />
       
-      {/* macOS Interface */}
-      <MenuBar onWindowChange={handleWindowChange} activeWindow={activeWindow} />
+      {/* Desktop Interface - Only show on desktop */}
+      {isDesktop && (
+        <>
+          <MenuBar onWindowChange={handleWindowChange} activeWindow={activeWindow} />
+          <WindowManager activeWindow={activeWindow} onWindowChange={handleWindowChange} />
+          <div className="relative z-10 min-h-screen pt-8">
+            {/* Other content can go here */}
+          </div>
+          <Dock />
+        </>
+      )}
       
-      {/* Window Manager - Handles all windows */}
-      <WindowManager activeWindow={activeWindow} onWindowChange={handleWindowChange} />
-      
-      {/* Main Desktop Area */}
-      <div className="relative z-10 min-h-screen pt-8">
-        {/* Other content can go here */}
-      </div>
-      
-      {/* Dock */}
-      <Dock />
+      {/* Mobile Interface - Only show on mobile/tablet */}
+      {(isMobile || isTablet) && (
+        <MobileInterface activeWindow={activeWindow} onWindowChange={handleWindowChange} />
+      )}
     </div>
   );
 };
