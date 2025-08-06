@@ -79,7 +79,7 @@ const MobileInterface = ({ activeWindow, onWindowChange }: MobileInterfaceProps)
                   
                   <p>
                     When I'm not coding, you'll find me exploring new technologies, experimenting with the latest in AI. 
-                    I also enjoy playing pickleball, watching the latest movies, and eating some very good sushi or mexican food.
+                    I also enjoy playing pickleball, watching the latest movies, and eating some very good sushi or mexican food with my girlfriend.
                     Below you'll find some of my current focuses, as well as some languages and frameworks I've utilized displayed in the dock at the bottom.
                   </p>
                 </div>
