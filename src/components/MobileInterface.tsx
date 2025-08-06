@@ -151,6 +151,9 @@ const MobileInterface = ({ activeWindow, onWindowChange }: MobileInterfaceProps)
                     </div>
                   </div>
                 </div>
+
+                {/* Extra bottom spacing for better scroll experience */}
+                <div className="h-32"></div>
               </motion.div>
             </motion.div>
           )}
@@ -177,10 +180,7 @@ const MobileInterface = ({ activeWindow, onWindowChange }: MobileInterfaceProps)
                 
                 {/* Sheet Header */}
                 <div className="px-6 pb-4 border-b border-white/10">
-                  <div className="flex items-center justify-between">
-                    <h2 className="text-white text-xl font-semibold">
-                      {menuItems.find(item => item.type === activeWindow)?.label}
-                    </h2>
+                  <div className="flex items-center justify-end">
                     <motion.button
                       whileHover={{ scale: 1.1 }}
                       whileTap={{ scale: 0.9 }}
@@ -224,10 +224,7 @@ const MobileInterface = ({ activeWindow, onWindowChange }: MobileInterfaceProps)
                   
                   {/* Sheet Header */}
                   <div className="px-6 pb-4 border-b border-white/10">
-                    <div className="flex items-center justify-between">
-                      <h2 className="text-white text-xl font-semibold">
-                        {menuItems.find(item => item.type === activeWindow)?.label}
-                      </h2>
+                    <div className="flex items-center justify-end">
                       <motion.button
                         whileHover={{ scale: 1.1 }}
                         whileTap={{ scale: 0.9 }}

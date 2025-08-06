@@ -79,22 +79,22 @@ const MobileWindows = ({ activeWindow, onWindowChange }: MobileWindowsProps) => 
           </motion.div>
         );
 
-      case "projects":
-        return (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="space-y-4"
-          >
-            <motion.h2
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              className="text-2xl font-bold text-white mb-6"
-            >
-              Projects
-            </motion.h2>
-            
-            {/* Project Cards */}
+             case "projects":
+         return (
+           <motion.div
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             className="space-y-4"
+           >
+             <motion.h2
+               initial={{ y: 20, opacity: 0 }}
+               animate={{ y: 0, opacity: 1 }}
+               className="text-2xl font-bold text-white mb-6"
+             >
+               Projects
+             </motion.h2>
+             
+             {/* Project Cards */}
             <div className="space-y-4">
               {[
                 {
@@ -234,22 +234,22 @@ const MobileWindows = ({ activeWindow, onWindowChange }: MobileWindowsProps) => 
           </motion.div>
         );
 
-      case "resume":
-        return (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="space-y-6"
-          >
-            <motion.h2
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              className="text-2xl font-bold text-white mb-6"
-            >
-              Resume
-            </motion.h2>
+             case "resume":
+         return (
+           <motion.div
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             className="space-y-6"
+           >
+             <motion.h2
+               initial={{ y: 20, opacity: 0 }}
+               animate={{ y: 0, opacity: 1 }}
+               className="text-2xl font-bold text-white mb-6"
+             >
+               Resume
+             </motion.h2>
 
-            {/* Download Button */}
+             {/* Download Button */}
             <motion.div
               initial={{ y: 20, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
@@ -333,22 +333,22 @@ const MobileWindows = ({ activeWindow, onWindowChange }: MobileWindowsProps) => 
           </motion.div>
         );
 
-      case "contact":
-        return (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="space-y-6"
-          >
-            <motion.h2
-              initial={{ y: 20, opacity: 0 }}
-              animate={{ y: 0, opacity: 1 }}
-              className="text-2xl font-bold text-white mb-6"
-            >
-              Contact
-            </motion.h2>
+             case "contact":
+         return (
+           <motion.div
+             initial={{ opacity: 0 }}
+             animate={{ opacity: 1 }}
+             className="space-y-6"
+           >
+             <motion.h2
+               initial={{ y: 20, opacity: 0 }}
+               animate={{ y: 0, opacity: 1 }}
+               className="text-2xl font-bold text-white mb-6"
+             >
+               Contact
+             </motion.h2>
 
-            {/* Contact Methods */}
+             {/* Contact Methods */}
             <div className="space-y-4">
                              {[
                  { icon: "📧", label: "Email", value: "gutierrezjustin48@gmail.com", action: "mailto:gutierrezjustin48@gmail.com" },
