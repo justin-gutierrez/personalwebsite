@@ -15,7 +15,6 @@ import dockerLogo from "@/assets/dockerpng.png";
 
 const MobileDock = () => {
   const [offset, setOffset] = useState(0);
-  const [activeTooltip, setActiveTooltip] = useState<{ name: string; clickedIndex: number } | null>(null);
 
   const dockItems = [
     { name: "Java", logo: javaLogo, bgColor: "bg-orange-500" },
@@ -51,102 +50,40 @@ const MobileDock = () => {
     return () => clearInterval(interval);
   }, [dockItems.length]);
 
-  // Handle tooltip timeout
-  useEffect(() => {
-    if (activeTooltip) {
-      const timer = setTimeout(() => {
-        setActiveTooltip(null);
-      }, 3000); // Hide tooltip after 3 seconds
 
-      return () => clearTimeout(timer);
-    }
-  }, [activeTooltip]);
-
-  const handleItemClick = (itemName: string, clickedIndex: number) => {
-    setActiveTooltip({ name: itemName, clickedIndex });
-  };
-
-  // Calculate the current position of the clicked item
-  const getTooltipPosition = () => {
-    if (!activeTooltip) return { x: 0, y: 0 };
-    
-    // Calculate where the clicked item currently is
-    const itemPosition = (activeTooltip.clickedIndex * 60) + (offset * 60);
-    
-    // Position tooltip above the item, centered
-    const tooltipX = itemPosition + 24; // Center over the 48px wide item
-    const tooltipY = -50; // Position above the dock
-    
-    return { x: tooltipX, y: tooltipY };
-  };
-
-  const tooltipPosition = getTooltipPosition();
 
   return (
     <div className="w-full relative">
-      <div className="bg-gray-300/60 backdrop-blur-ios rounded-ios-lg border border-gray-500/30 shadow-ios p-3 overflow-hidden">
-        <div className="flex space-x-3">
-          <motion.div
-            className="flex space-x-3"
-            animate={{ x: `${offset * 60}px` }} // 60px per item (48px width + 12px gap)
-            transition={{ 
-              duration: 2,
-              ease: "linear"
-            }}
-          >
-            {duplicatedItems.map((item, index) => (
-              <motion.div
-                key={`${item.name}-${index}`}
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: index * 0.05 }}
-                className={`flex-shrink-0 w-12 h-12 ${item.bgColor} rounded-ios-lg flex items-center justify-center shadow-ios hover:shadow-ios-lg transition-all duration-300 cursor-pointer`}
+        <div className="bg-gray-300/60 backdrop-blur-ios rounded-ios-lg border border-gray-500/30 shadow-ios p-3 overflow-hidden">
+          <div className="flex space-x-3">
+            <motion.div
+              className="flex space-x-3"
+              animate={{ x: `${offset * 60}px` }} // 60px per item (48px width + 12px gap)
+              transition={{ 
+                duration: 2,
+                ease: "linear"
+              }}
+            >
+              {duplicatedItems.map((item, index) => (
+                <motion.div
+                  key={`${item.name}-${index}`}
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: index * 0.05 }}
+                                  className={`flex-shrink-0 w-12 h-12 ${item.bgColor} rounded-ios-lg flex items-center justify-center shadow-ios hover:shadow-ios-lg transition-all duration-300`}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => handleItemClick(item.name, index)}
-              >
-                <img
-                  src={item.logo}
-                  alt={item.name}
-                  className="w-8 h-8 object-contain"
-                />
-              </motion.div>
-            ))}
-          </motion.div>
+                >
+                  <img
+                    src={item.logo}
+                    alt={item.name}
+                    className="w-8 h-8 object-contain"
+                  />
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
         </div>
       </div>
-
-      {/* Tooltip/Popup - Following the clicked item with synchronized animation */}
-      <AnimatePresence>
-        {activeTooltip && (
-          <motion.div
-            initial={{ opacity: 0, y: 10, scale: 0.9 }}
-            animate={{ 
-              opacity: 1, 
-              x: tooltipPosition.x,
-              y: tooltipPosition.y,
-              scale: 1 
-            }}
-            exit={{ opacity: 0, y: -10, scale: 0.9 }}
-            transition={{ 
-              duration: 2, // Match the carousel's 2-second duration
-              ease: "linear" // Use linear easing to match carousel movement
-            }}
-            className="absolute top-0 left-0 z-50 pointer-events-none"
-            style={{
-              transform: `translate(-50%, 0)` // Center the tooltip horizontally
-            }}
-          >
-            <div className="bg-black/80 backdrop-blur-ios rounded-ios px-3 py-2 shadow-ios-lg border border-white/20">
-              <span className="text-white text-sm font-medium whitespace-nowrap">
-                {activeTooltip.name}
-              </span>
-              {/* Tooltip arrow */}
-              <div className="absolute top-full left-1/2 transform -translate-x-1/2 w-0 h-0 border-l-4 border-r-4 border-t-4 border-transparent border-t-black/80"></div>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
   );
 };
 

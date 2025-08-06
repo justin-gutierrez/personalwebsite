@@ -30,22 +30,7 @@ const MobileInterface = ({ activeWindow, onWindowChange }: MobileInterfaceProps)
               exit={{ opacity: 0, y: -20 }}
               className="text-center"
             >
-              <motion.h2 
-                className="text-2xl font-bold mb-6 bg-gradient-to-r from-white via-blue-500 to-white bg-clip-text text-transparent"
-                animate={{
-                  backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
-                }}
-                transition={{
-                  duration: 10,
-                  repeat: Infinity,
-                  ease: "linear"
-                }}
-                style={{
-                  backgroundSize: "200% 200%",
-                }}
-              >
-                Hi, I'm Justin
-              </motion.h2>
+
 
               {/* About Me Content */}
               <motion.div
@@ -54,19 +39,23 @@ const MobileInterface = ({ activeWindow, onWindowChange }: MobileInterfaceProps)
                 transition={{ delay: 0.2 }}
                 className="space-y-6"
               >
-                {/* Profile Avatar */}
-                <div className="flex justify-center mb-4">
-                  <motion.div 
-                    className="w-24 h-24 rounded-full overflow-hidden border-4 border-white/20 shadow-ios-lg"
-                    whileHover={{ scale: 1.05 }}
-                  >
-                    <img 
-                      src={profileAvatar} 
-                      alt="Profile Avatar" 
-                      className="w-full h-full object-cover"
-                    />
-                  </motion.div>
-                </div>
+                                                                   {/* Profile Avatar */}
+                 <div className="flex justify-center mb-4">
+                   <motion.div 
+                     className="w-36 h-36 rounded-full overflow-hidden border-4 border-white/20"
+                     whileHover={{ scale: 1.05 }}
+                   >
+                                           <img 
+                        src={profileAvatar} 
+                        alt="Profile Avatar" 
+                        className="w-full h-full object-contain"
+                        style={{
+                          transform: 'scale(2)',
+                          transformOrigin: 'center'
+                        }}
+                      />
+                   </motion.div>
+                 </div>
 
                 {/* Title */}
                 <div className="mb-4">

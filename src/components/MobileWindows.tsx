@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { WindowType } from "./WindowManager";
-import profileAvatar from "@/assets/profileavatorpicture.jpg";
+import profileAvatar from "@/assets/topleftpearlogo.png";
 
 interface MobileWindowsProps {
   activeWindow: WindowType;
@@ -19,34 +19,31 @@ const MobileWindows = ({ activeWindow, onWindowChange }: MobileWindowsProps) => 
           >
             {/* Profile Section */}
             <div className="text-center">
-              <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.2 }}
-                className="w-32 h-32 rounded-full mx-auto mb-6 overflow-hidden border-4 border-white/20 shadow-ios-lg"
-              >
-                <img
-                  src={profileAvatar}
-                  alt="Profile Avatar"
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-              <motion.h1
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.3 }}
-                className="text-2xl font-bold text-white mb-2"
-              >
-                Justin Gutierrez
-              </motion.h1>
-              <motion.p
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="text-white/70 text-lg"
-              >
-                Software Engineer
-              </motion.p>
+                                             <motion.div
+                  initial={{ scale: 0.8, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ delay: 0.2 }}
+                  className="w-48 h-48 rounded-full mx-auto mb-6 overflow-hidden border-4 border-white/20 shadow-ios-lg"
+                >
+                  <img
+                    src={profileAvatar}
+                    alt="Profile Avatar"
+                    className="w-full h-full object-cover"
+                    onError={(e) => {
+                      console.error('Image failed to load:', e);
+                      e.currentTarget.src = '/fallback-avatar.png';
+                    }}
+                    onLoad={() => console.log('Image loaded successfully')}
+                  />
+                                </motion.div>
+               <motion.p
+                 initial={{ y: 20, opacity: 0 }}
+                 animate={{ y: 0, opacity: 1 }}
+                 transition={{ delay: 0.3 }}
+                 className="text-white/70 text-lg mb-4"
+               >
+                 Software Engineer
+               </motion.p>
             </div>
 
             {/* About Content */}
@@ -353,12 +350,11 @@ const MobileWindows = ({ activeWindow, onWindowChange }: MobileWindowsProps) => 
 
             {/* Contact Methods */}
             <div className="space-y-4">
-              {[
-                { icon: "📧", label: "Email", value: "justin@example.com", action: "mailto:justin@example.com" },
-                { icon: "💼", label: "LinkedIn", value: "linkedin.com/in/justin", action: "https://linkedin.com/in/justin" },
-                { icon: "🐙", label: "GitHub", value: "github.com/justin", action: "https://github.com/justin" },
-                { icon: "📱", label: "Phone", value: "+1 (555) 123-4567", action: "tel:+15551234567" }
-              ].map((contact, index) => (
+                             {[
+                 { icon: "📧", label: "Email", value: "gutierrezjustin48@gmail.com", action: "mailto:gutierrezjustin48@gmail.com" },
+                 { icon: "💼", label: "LinkedIn", value: "linkedin.com/in/justingutierrez1", action: "https://linkedin.com/in/justingutierrez1" },
+                 { icon: "🐙", label: "GitHub", value: "github.com/justin-gutierrez", action: "https://github.com/justin-gutierrez" }
+               ].map((contact, index) => (
                 <motion.a
                   key={contact.label}
                   href={contact.action}
