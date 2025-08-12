@@ -2,12 +2,52 @@ import { motion } from "framer-motion";
 import { Minimize2, Maximize2, X } from "lucide-react";
 import { WindowType } from "./WindowManager";
 import profileAvatar from "../assets/profileavatorpicture.jpg";
+import { useState, useEffect } from "react";
 
 interface AboutMeWindowProps {
   onWindowChange: (windowType: WindowType) => void;
 }
 
 const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
+  const [positioning, setPositioning] = useState({ topPadding: 90, bottomPadding: 108 });
+
+  // Calculate dynamic positioning to avoid dock overlap
+  const calculatePositioning = () => {
+    const viewportHeight = window.innerHeight;
+    const menuBarHeight = 32; // MenuBar height (h-8 = 32px)
+    const dockHeight = 88; // Dock height (h-14 + padding + margin = ~88px)
+    const safetyMargin = 20; // Extra safety margin
+    
+    // Calculate available height for the window
+    const availableHeight = viewportHeight - menuBarHeight - dockHeight - safetyMargin;
+    
+    // Calculate top padding to center the window in available space
+    const topPadding = Math.max(menuBarHeight + 20, menuBarHeight + (availableHeight - 600) / 2);
+    
+    // Calculate bottom padding to ensure content doesn't overlap with dock
+    const bottomPadding = dockHeight + safetyMargin;
+    
+    return { topPadding, bottomPadding };
+  };
+
+  // Update positioning on mount and window resize
+  useEffect(() => {
+    const updatePositioning = () => {
+      setPositioning(calculatePositioning());
+    };
+
+    // Set initial positioning
+    updatePositioning();
+
+    // Add resize listener
+    window.addEventListener('resize', updatePositioning);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', updatePositioning);
+  }, []);
+
+  const { topPadding, bottomPadding } = positioning;
+
   return (
     <motion.div
       initial={{ scale: 0.8, opacity: 0, y: 50 }}
@@ -19,8 +59,11 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
         transition: { duration: 0.4, ease: "easeInOut" }
       }}
       transition={{ type: "spring", stiffness: 300, damping: 25 }}
-      className="fixed inset-0 flex items-center justify-center z-40 pb-20"
-      style={{ paddingTop: '90px' }}
+      className="fixed inset-0 flex items-center justify-center z-40"
+      style={{ 
+        paddingTop: `${topPadding}px`,
+        paddingBottom: `${bottomPadding}px`
+      }}
     >
       <div className="w-[600px] bg-window/95 backdrop-blur-macos rounded-lg shadow-window border border-window-border/50 overflow-hidden">
         {/* Window Header */}
