@@ -9,7 +9,7 @@ interface AboutMeWindowProps {
 }
 
 const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
-  const [positioning, setPositioning] = useState({ topPadding: 90, bottomPadding: 108 });
+  const [positioning, setPositioning] = useState({ topPadding: 90, bottomPadding: 108, windowHeight: 600 });
 
   // Calculate dynamic positioning to avoid dock overlap
   const calculatePositioning = () => {
@@ -21,13 +21,16 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
     // Calculate available height for the window
     const availableHeight = viewportHeight - menuBarHeight - dockHeight - safetyMargin;
     
+    // For smaller screens, ensure the window fits within available space
+    const windowHeight = Math.min(600, availableHeight - 40); // Max 600px, but adapt to smaller screens
+    
     // Calculate top padding to center the window in available space
-    const topPadding = Math.max(menuBarHeight + 20, menuBarHeight + (availableHeight - 600) / 2);
+    const topPadding = Math.max(menuBarHeight + 10, menuBarHeight + (availableHeight - windowHeight) / 2);
     
     // Calculate bottom padding to ensure content doesn't overlap with dock
     const bottomPadding = dockHeight + safetyMargin;
     
-    return { topPadding, bottomPadding };
+    return { topPadding, bottomPadding, windowHeight };
   };
 
   // Update positioning on mount and window resize
@@ -46,7 +49,7 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
     return () => window.removeEventListener('resize', updatePositioning);
   }, []);
 
-  const { topPadding, bottomPadding } = positioning;
+  const { topPadding, bottomPadding, windowHeight } = positioning;
 
   return (
     <motion.div
@@ -65,7 +68,13 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
         paddingBottom: `${bottomPadding}px`
       }}
     >
-      <div className="w-[600px] bg-window/95 backdrop-blur-macos rounded-lg shadow-window border border-window-border/50 overflow-hidden">
+      <div 
+        className="bg-window/95 backdrop-blur-macos rounded-lg shadow-window border border-window-border/50 overflow-hidden"
+        style={{ 
+          width: `${Math.min(600, window.innerWidth - 40)}px`,
+          height: `${windowHeight}px`
+        }}
+      >
         {/* Window Header */}
         <div className="h-8 bg-window-header/80 backdrop-blur-sm border-b border-window-border/30 flex items-center justify-between px-4">
           <div className="flex items-center space-x-2">
@@ -126,7 +135,7 @@ const AboutMeWindow = ({ onWindowChange }: AboutMeWindowProps) => {
         </div>
 
         {/* Content */}
-        <div className="p-6 pb-20 min-h-[400px] bg-gradient-to-br from-window via-window/95 to-window/90">
+        <div className="p-6 bg-gradient-to-br from-window via-window/95 to-window/90 overflow-y-auto" style={{ height: `calc(${windowHeight}px - 72px)` }}>
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
